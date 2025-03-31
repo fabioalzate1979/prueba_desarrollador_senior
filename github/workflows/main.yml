@@ -10,7 +10,7 @@ on:
 env:
   SERVICE_NAME: prueba-desarrollador-senior
   REGION: us-central1
-  GCP_PROJECT: ${{ secrets.PROJECT_ID_PROD }}
+  GCP_PROJECT: ${{ secrets.PROJECT_ID }}
 
 jobs:
   build_and_deploy:
