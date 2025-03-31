@@ -1,20 +1,15 @@
-# Usa una imagen base de Node.js
-FROM node:20
+FROM node:20-alpine
 
-# Establece el directorio de trabajo dentro del contenedor
-WORKDIR /usr/src/app
+WORKDIR /root/
 
-# Copia el package.json y package-lock.json
-COPY package*.json ./
+COPY package.json ./
 
-# Instala las dependencias
-RUN npm install --only=production --legacy-peer-deps
+RUN yarn install --production=true
 
-# Copia el código fuente al contenedor
-COPY . .
+COPY ./dist ./dist/
 
-# Expone el puerto de la aplicación
+COPY .env ./
+
 EXPOSE 8080
 
-# Comando para iniciar la app
-CMD ["node", "dist/index.js"]
+CMD ["yarn", "build && yarn", "start"]

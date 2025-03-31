@@ -10,7 +10,7 @@
         "name": "Coordinadora Mercantil S.A"
     },
     "scripts": {
-        "build": "rimraf dist && tsc -p tsconfig.build.json",
+        "build": "yarn clean && tsc",
         "lint": "eslint . --ext .ts --fix",
         "format": "prettier --write \"./src/**/*.ts\"",
         "format-check": "prettier --list-different \"./src/**/*.ts\"",
@@ -21,7 +21,6 @@
         "coverage": "jest --coverage",
         "release": "standard-version",
         "husky:install": "husky install",
-          "deploy": "gcloud run deploy pruebadesarrollosenior --image=gcr.io/pruebadesarrollosenior/app --platform=managed --region=us-central1 --allow-unauthenticated",
         "start-lint-dev": "yarn lint && node dist/index.js",
         "test:mutation": "npx stryker run"
     },
