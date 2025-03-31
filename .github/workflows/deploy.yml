@@ -18,11 +18,11 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-
       - name: Verify authentication
         run: gcloud auth list
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
 
       - name: Build and push Docker image
         run: |
@@ -37,4 +37,19 @@ jobs:
             --platform=managed \
             --region=us-central1 \
             --allow-unauthenticated \
-            --set-env-vars POSTGRES_HOST=${{ secrets.POSTGRES_HOST
+            --set-env-vars POSTGRES_HOST=${{ secrets.POSTGRES_HOST }},\
+                          POSTGRES_USER=${{ secrets.POSTGRES_USER }},\
+                          POSTGRES_PASS=${{ secrets.POSTGRES_PASS }},\
+                          POSTGRES_DATABASE=${{ secrets.POSTGRES_DATABASE }},\
+                          PG_PORT=${{ secrets.PG_PORT }},\
+                          PORT=${{ secrets.PORT }},\
+                          PROJECT_ID=${{ secrets.PROJECT_ID }},\
+                          SERVICE_NAME=${{ secrets.SERVICE_NAME }},\
+                          DOMAIN=${{ secrets.DOMAIN }},\
+                          REDIS_HOST=${{ secrets.REDIS_HOST }},\
+                          REDIS_PORT=${{ secrets.REDIS_PORT }},\
+                          REDIS_TIMEOUT=${{ secrets.REDIS_TIMEOUT }},\
+                          REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }},\
+                          PREFIX_LOGGER=${{ secrets.PREFIX_LOGGER }},\
+                          LOGGER_LEVEL=${{ secrets.LOGGER_LEVEL }},\
+                          VERSION=${{ secrets.VERSION }}
